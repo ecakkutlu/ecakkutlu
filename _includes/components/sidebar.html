@@ -1,0 +1,64 @@
+<!--
+  The Sidebar
+-->
+
+<div id="sidebar" class="sidebar d-flex flex-column flex-shrink-0">
+  <div class="sidebar-inner" data-simplebar>
+    <div class="sidebar-item mt-3">
+      <form data-search-form>
+        <i class="fas fa-search"></i>
+        <input type="text" id="search-input" aria-label="search" autocomplete="off"
+          placeholder="{{ site.data.locales[include.lang].search.hint | default: 'Searching...' }}">
+      </form>
+    </div>
+
+    <nav class="sidebar-nav heading-font" aria-label="Main">
+      <ul class="list-unstyled">
+        <!-- home -->
+        <li class="sidebar-item">
+          <a href="{{ '/' | relative_url }}" class="sidebar-link">
+            <i class="fas fa-fw fa-home"></i>
+            <span>{{ site.data.locales[include.lang].nav.home | default: 'Home' }}</span>
+          </a>
+        </li>
+
+        <!-- the real tabs -->
+        {% for tab in site.tabs %}
+          <li class="sidebar-item{% if tab.active %} active{% endif %}">
+            <a href="{{ tab.url | relative_url }}" class="sidebar-link">
+              <i class="{{ tab.icon | default: 'fas fa-circle' }} fa-fw"></i>
+              <span>{{ tab.title | default: tab.label | default: tab.name }}</span>
+            </a>
+          </li>
+        {% endfor %}
+
+        <!-- The static links -->
+        {% for link in site.data.links %}
+          <li class="sidebar-item">
+            <a href="{{ link.url }}" class="sidebar-link" {% unless link.noblank %}target="_blank"
+              rel="noopener"{% endunless %}>
+              <i class="{{ link.icon | default: 'fas fa-circle' }} fa-fw"></i>
+              <span>{{ link.title }}</span>
+            </a>
+          </li>
+        {% endfor %}
+      </ul>
+    </nav>
+
+    {% if site.preferences.search.provider != 'pagefind' %}
+      <div class="sidebar-item sidebar-bottom">
+        <div class="sidebar-bottom-item">
+          <button class="btn btn-link nav-link text-center" type="button"
+            aria-label="Switch to light mode" data-toggle="theme" data-theme="light">
+            <i class="fas fa-sun"></i>
+          </button>
+          <button class="btn btn-link nav-link text-center" type="button"
+            aria-label="Switch to dark mode" data-toggle="theme" data-theme="dark">
+            <i class="fas fa-moon"></i>
+          </button>
+        </div>
+      </div>
+    {% endif %}
+
+  </div>
+</div> 
