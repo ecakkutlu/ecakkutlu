@@ -1,0 +1,10 @@
+# English
+# You can add more languages by creating new files in this directory.
+
+# The meta text in the footer
+meta: "Powered by :PLATFORM with :THEME"
+
+# The copyright text in the footer
+copyright:
+  brief: ""  # Empty string to remove "Some rights reserved"
+  verbose: "" 
